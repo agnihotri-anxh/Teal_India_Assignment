@@ -1,0 +1,25 @@
+PROPERTY ADDRESS CLASSIFICATION SUMMARY REPORT
+=============================================================
+
+1. OBJECTIVE
+The project's goal was to build a machine learning model to classify property addresses into five categories (Flat, House or Plot, Land Parcel, Commercial Unit, Others).
+
+=============================================================
+2. METHODOLOGY
+The approach used a standard text classification pipeline:
+* Data Preparation: Lowercased and cleaned text; numbers were retained.
+* Feature Engineering: Used a TF-IDF Vectorizer (max_features=2000, ngram_range=(1, 2)).
+* Model Selection: The Random Forest Classifier was selected after achieving the highest validation score (0.91 Weighted F1) among four tested models.
+* Tuning: Hyperparameters were optimized using RandomizedSearchCV.
+
+=============================================================
+3. FINAL PERFORMANCE (ON TEST SET)
+The final tuned Random Forest model demonstrated strong generalization:
+    Metric              Score
+	Accuracy            0.9217
+	Weighted F1 Score   0.92
+The model performed best on 'Commercial Unit' (F1: 0.97) and 'Flat' (F1: 0.96). The lowest performance was observed in the 'Land Parcel' category (F1: 0.80) due to overlap with 'House or Plot' keywords.
+
+=============================================================
+4. CONCLUSION & NEXT STEPS
+The TF-IDF + Tuned Random Forest model is ready for deployment, with all necessary artifacts saved. Future work should focus on exploring sentence embeddings (SBERT) to improve the classification of the ambiguous 'Land Parcel' category.
